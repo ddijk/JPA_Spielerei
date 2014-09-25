@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+	<h:head>
+		<title>Facelet Title</title>
+	</h:head>
+	<h:body>
+		<h:form>
+			
+			<h:outputLabel value="Account id"/><h:inputText value="#{accountBacking.accountId}"/>
+			<h:outputLabel value="Account name"/><h:inputText value="#{accountBacking.name}"/>
+			<h:commandButton value="create account" action="#{accountBacking.saveAccount()}"/>
+		</h:form>
+		<h:form>
+			
+			<h:outputLabel value="Account id"/><h:inputText value="#{accountBacking.accountId}"/>
+			<h:outputLabel value="Measure id"/><h:inputText value="#{accountBacking.measureId}"/>
+			<h:commandButton value="create account" action="#{accountBacking.saveAccountMeasureLink()}"/>
+		</h:form>
+		<h:dataTable var="a" value="#{accountBacking.allAccounts}">
+		
+			<h:column><f:facet name="header">Id</f:facet>#{a.accountId}</h:column>
+			<h:column><f:facet name="header">Name</f:facet>#{a.name}</h:column>
+			<h:column><f:facet name="header">Measures</f:facet>
+				<h:dataTable var="m" value="#{a.metingen}">
+					<h:column><f:facet name="header">measure id</f:facet>#{m.id}</h:column>
+					<h:column><f:facet name="header">measure desc</f:facet>#{m.desc}</h:column>
+				
+				</h:dataTable>
+			</h:column>
+		</h:dataTable>
+		<h:dataTable var="m" value="#{accountBacking.allMetingen}">
+		
+			<h:column><f:facet name="header">Id</f:facet>#{m.id}</h:column>
+			<h:column><f:facet name="header">Descr</f:facet>#{m.desc}</h:column>
+		</h:dataTable>
+	</h:body>
+</html>
+
